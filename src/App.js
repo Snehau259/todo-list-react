@@ -1,19 +1,11 @@
 
 import './App.css';
 import { useState } from 'react'
-// import Counter from './counter';
+
 
 function App() {
-
-  // const [state, setState] = useState(false)
-  // function incrementCounter() {
-  //   setCount(count + 1)
-  //   console.log(count)
-
-  // }
-  // let details={title:'counter 1',count:0}
-
-
+  const [todoList, setTodoList] = useState([])
+  const [todo, setTodo] = useState('')
   return (
     <div className="app">
       <div className="mainHeading">
@@ -24,19 +16,24 @@ function App() {
         <h2>Whoop, it's Wednesday 🌝 ☕ </h2>
       </div>
       <div className="input">
-        <input type="text" placeholder="🖊️ Add item..." />
-        <i className="fas fa-plus"></i>
+        <input type="text" onChange={(e) => setTodo(e.target.value)} placeholder="🖊️ Add item..." />
+        <i className="fas fa-plus" onClick={() => setTodoList([...todoList, todo])}></i> 
       </div>
+      {console.log(todoList)}
       <div className="todos">
-        <div className="todo">
-          <div className="left">
-            <input type="checkbox" name="" id="" />
-            <p>React tutorial</p>
-          </div>
-          <div className="right">
-            <i className="fas fa-times"></i>
-          </div>
-        </div>
+      
+        {todoList.map((value) => {
+          return (
+            <div className="todo">
+              <div className="left">
+                <input type="checkbox" name="" id=""/>
+                <p>{value}</p>
+              </div>
+              <div className="right">
+                <i className="fas fa-times"></i>
+              </div>
+            </div>)
+        })}
       </div>
     </div>
   );
